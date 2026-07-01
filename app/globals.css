@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background: #0b0b12;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbars on the horizontal rows but keep scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Nova gradient wordmark / accents */
+.nova-wordmark {
+  background: linear-gradient(90deg, #ff2d78 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nova-gradient {
+  background: linear-gradient(90deg, #ff2d78 0%, #8b5cf6 100%);
+}
+
+.hero-fade {
+  background: linear-gradient(
+      to top,
+      #0b0b12 0%,
+      rgba(11, 11, 18, 0.6) 35%,
+      rgba(11, 11, 18, 0.1) 70%,
+      rgba(11, 11, 18, 0.4) 100%
+    ),
+    linear-gradient(to right, rgba(11, 11, 18, 0.9) 0%, rgba(11, 11, 18, 0.2) 60%);
+}
