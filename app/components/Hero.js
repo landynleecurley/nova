@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IMG_ORIGINAL, titleOf, yearOf, mediaTypeOf } from "../../lib/tmdb";
+import { IMG_ORIGINAL, titleOf, yearOf, mediaTypeOf, genreOf } from "../../lib/tmdb";
 import { IconPlay } from "./icons";
 
 export default function Hero({ item }) {
@@ -27,6 +27,11 @@ export default function Hero({ item }) {
         <div className="flex items-center gap-3 text-sm text-white/80 mb-4">
           {yearOf(item) && <span>{yearOf(item)}</span>}
           <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{type}</span>
+          {genreOf(item) && (
+            <span className="uppercase border border-nova-pink/60 text-nova-pink px-1.5 rounded text-xs">
+              {genreOf(item)}
+            </span>
+          )}
           {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
         </div>
         <p className="text-white/85 text-sm md:text-lg line-clamp-3 mb-6">{item.overview}</p>
