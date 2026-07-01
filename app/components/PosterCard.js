@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IMG, titleOf, yearOf, mediaTypeOf } from "../../lib/tmdb";
+import { IconPlay } from "./icons";
 
 const GRADIENTS = [
   ["#1ce783", "#0b6b3f"],
@@ -22,6 +23,8 @@ function gradientFor(id) {
 
 export default function PosterCard({ item, wide = false }) {
   const [loaded, setLoaded] = useState(false);
+  const [errored, setErrored] = useState(false);
+  const imgRef = useRef(null);
   const type = mediaTypeOf(item);
   const href = `/${type}/${item.id}`;
   const img = item.poster_path
@@ -30,6 +33,17 @@ export default function PosterCard({ item, wide = false }) {
     ? `${IMG}${item.backdrop_path}`
     : null;
 
+  // If the image finished loading before React attached onLoad (cache / SSR
+  // hydration), the load event is missed — reconcile from the DOM on mount.
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el) return;
+    if (el.complete) {
+      if (el.naturalWidth > 0) setLoaded(true);
+      else setErrored(true);
+    }
+  }, [img]);
+
   return (
     <Link
       href={href}
@@ -37,14 +51,16 @@ export default function PosterCard({ item, wide = false }) {
         wide ? "w-64 aspect-video" : "w-40 md:w-44 aspect-[2/3]"
       } rounded-lg overflow-hidden bg-nova-panel ring-1 ring-white/10 transition-all duration-200 hover:ring-2 hover:ring-nova-pink hover:scale-[1.05] hover:z-10`}
     >
-      {img ? (
+      {img && !errored ? (
         <>
           {!loaded && <div className="absolute inset-0 animate-pulse bg-white/5" />}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            ref={imgRef}
             src={img}
             alt={titleOf(item)}
             onLoad={() => setLoaded(true)}
+            onError={() => setErrored(true)}
             className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
             loading="lazy"
           />
@@ -62,8 +78,8 @@ export default function PosterCard({ item, wide = false }) {
           {yearOf(item) && <span>{yearOf(item)}</span>}
           {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
         </div>
-        <span className="mt-2 inline-flex w-fit items-center gap-1 bg-nova-pink text-nova-dark text-xs font-bold px-2.5 py-1 rounded">
-          ▶ Play
+        <span className="mt-2 inline-flex w-fit items-center gap-1.5 bg-nova-pink text-nova-dark text-xs font-bold px-2.5 py-1 rounded">
+          <IconPlay className="w-3 h-3" /> Play
         </span>
       </div>
     </Link>
