@@ -53,7 +53,7 @@ export default function DetailView({ item, mediaType }) {
         </div>
       </section>
 
-      <div className="px-6 md:px-12 -mt-2 grid md:grid-cols-3 gap-8 mb-10">
+      <div className="relative z-10 px-6 md:px-12 mt-6 grid md:grid-cols-3 gap-8 mb-10">
         <div className="md:col-span-2">
           <p className="text-white/85 text-lg leading-relaxed">{item.overview}</p>
         </div>
