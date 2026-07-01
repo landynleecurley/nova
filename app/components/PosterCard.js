@@ -73,7 +73,7 @@ export default function PosterCard({ item, wide = false }) {
       )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-        <p className="font-bold text-sm leading-tight line-clamp-2">{titleOf(item)}</p>
+        <p className="font-bold text-sm leading-tight line-clamp-3">{titleOf(item)}</p>
         <div className="flex items-center gap-2 text-xs text-white/70 mt-1">
           {yearOf(item) && <span>{yearOf(item)}</span>}
           {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
