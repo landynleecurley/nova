@@ -39,6 +39,11 @@ export default function DetailView({ item, mediaType }) {
             {yearOf(item) && <span>{yearOf(item)}</span>}
             {runtime && <span>{runtime}</span>}
             <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{mediaType}</span>
+            {genres[0] && (
+              <span className="uppercase border border-nova-pink/60 text-nova-pink px-1.5 rounded text-xs">
+                {genres[0].name}
+              </span>
+            )}
             {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
           </div>
           <DetailActions id={item.id} title={titleOf(item)} mediaType={mediaType} />
