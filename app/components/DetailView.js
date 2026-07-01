@@ -27,15 +27,15 @@ export default function DetailView({ item, mediaType }) {
       <section className="relative h-[65vh] min-h-[420px]">
         {bg ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={bg} alt={titleOf(item)} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={bg} alt={titleOf(item)} className="absolute inset-0 w-full h-full object-cover object-center" />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-nova-pink/40 via-nova-panel to-nova-dark" />
         )}
         <div className="absolute inset-0 hero-fade" />
 
-        <div className="relative z-10 h-full flex flex-col justify-end items-center text-center md:items-start md:text-left px-6 md:px-12 pb-10 max-w-3xl mx-auto md:mx-0">
+        <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-12 pb-10 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-black mb-4 drop-shadow-lg">{titleOf(item)}</h1>
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-sm text-white/80 mb-5">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80 mb-5">
             {yearOf(item) && <span>{yearOf(item)}</span>}
             {runtime && <span>{runtime}</span>}
             <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{mediaType}</span>
