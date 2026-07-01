@@ -30,6 +30,26 @@ body {
   background: linear-gradient(90deg, #ff2d78 0%, #8b5cf6 100%);
 }
 
+/* Skeleton shimmer sweep */
+.skeleton-shimmer {
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-sweep 1.6s ease-in-out infinite;
+}
+@keyframes skeleton-sweep {
+  0% {
+    background-position: 180% 0;
+  }
+  100% {
+    background-position: -180% 0;
+  }
+}
+
 .hero-fade {
   background: linear-gradient(
       to top,

@@ -71,6 +71,7 @@ export default function VideoPlayer({ title, backdrop }) {
   const [buffered, setBuffered] = useState(0);
   const [showControls, setShowControls] = useState(true);
   const [ready, setReady] = useState(false);
+  const [buffering, setBuffering] = useState(false);
 
   // Playback options
   const [quality, setQuality] = useState("Auto");
@@ -193,6 +194,12 @@ export default function VideoPlayer({ title, backdrop }) {
           const b = e.currentTarget.buffered;
           if (b.length) setBuffered(b.end(b.length - 1));
         }}
+        onWaiting={() => setBuffering(true)}
+        onStalled={() => setBuffering(true)}
+        onSeeking={() => setBuffering(true)}
+        onCanPlay={() => setBuffering(false)}
+        onPlaying={() => setBuffering(false)}
+        onSeeked={() => setBuffering(false)}
         onPlay={() => {
           setPlaying(true);
           nudgeControls();
@@ -203,15 +210,54 @@ export default function VideoPlayer({ title, backdrop }) {
         }}
       />
 
-      {/* Loading spinner */}
+      {/* Initial loading skeleton (before metadata is ready) */}
       {!ready && (
-        <div className="absolute inset-0 grid place-items-center pointer-events-none">
-          <div className="w-12 h-12 rounded-full border-4 border-white/20 border-t-nova-pink animate-spin" />
+        <div className="absolute inset-0 bg-nova-dark overflow-hidden">
+          {backdrop ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={backdrop} alt="" className="absolute inset-0 w-full h-full object-cover object-center opacity-30 blur-sm" />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-nova-pink/20 via-nova-panel to-nova-dark" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-nova-dark via-nova-dark/60 to-nova-dark/30" />
+
+          {/* Shimmer sweep */}
+          <div className="absolute inset-0 skeleton-shimmer" />
+
+          {/* Centered spinner + label */}
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-14 h-14 rounded-full border-4 border-white/15 border-t-nova-pink animate-spin" />
+              <p className="text-white/70 text-sm font-semibold tracking-wide">Loading{title ? ` ${title}` : ""}…</p>
+            </div>
+          </div>
+
+          {/* Skeleton control bar */}
+          <div className="absolute inset-x-0 bottom-0 px-4 md:px-8 pb-6 pt-16">
+            <div className="h-1.5 rounded-full bg-white/10 mb-4 animate-pulse" />
+            <div className="flex items-center gap-4">
+              <div className="w-6 h-6 rounded-full bg-white/10 animate-pulse" />
+              <div className="w-6 h-6 rounded-full bg-white/10 animate-pulse" />
+              <div className="w-16 h-4 rounded bg-white/10 animate-pulse" />
+              <div className="ml-auto w-6 h-6 rounded-full bg-white/10 animate-pulse" />
+              <div className="w-6 h-6 rounded-full bg-white/10 animate-pulse" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Buffering overlay (mid-playback stalls) */}
+      {ready && buffering && (
+        <div className="absolute inset-0 grid place-items-center pointer-events-none bg-black/30">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-14 h-14 rounded-full border-4 border-white/15 border-t-nova-pink animate-spin" />
+            <p className="text-white/80 text-sm font-semibold tracking-wide">Buffering…</p>
+          </div>
         </div>
       )}
 
       {/* Center play/pause flash when paused */}
-      {ready && !playing && (
+      {ready && !buffering && !playing && (
         <div className="absolute inset-0 grid place-items-center pointer-events-none">
           <div className="w-20 h-20 rounded-full bg-black/50 grid place-items-center">
             <IconPlay className="w-9 h-9 text-white" />
