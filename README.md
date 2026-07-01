@@ -8,6 +8,21 @@ a cinematic hero, horizontally scrolling category rows, live search, detail page
 customizable profile avatars, and a browse experience. Powered by the TMDB API
 (with a built-in demo mode).
 
+## Screenshots
+
+| Home | Movie detail |
+| --- | --- |
+| ![Nova home](screenshots/01-home.png) | ![Movie detail](screenshots/02-movie-detail.png) |
+
+| Browse | Search |
+| --- | --- |
+| ![Browse](screenshots/03-browse.png) | ![Search](screenshots/05-search.png) |
+
+<p align="center">
+  <img src="screenshots/06-mobile-home.png" width="240" alt="Mobile home" />
+  <img src="screenshots/07-mobile-detail.png" width="240" alt="Mobile detail" />
+</p>
+
 ## Features
 
 - ✦ **Original Nova brand** — pink→violet gradient wordmark, dark cinematic theme
