@@ -24,7 +24,7 @@ export default function Hero({ item }) {
         <h1 className="text-4xl md:text-6xl font-black leading-none mb-4 drop-shadow-lg">
           {titleOf(item)}
         </h1>
-        <div className="flex items-center gap-3 text-sm text-white/80 mb-4">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/80 mb-4">
           {yearOf(item) && <span>{yearOf(item)}</span>}
           <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{type}</span>
           {genreOf(item) && (

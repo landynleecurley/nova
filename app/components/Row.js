@@ -26,7 +26,7 @@ export default function Row({ title, items, wide = false }) {
         <span className="text-3xl">‹</span>
       </button>
 
-      <div ref={ref} className="no-scrollbar flex gap-3 overflow-x-auto px-6 md:px-12 pb-2 scroll-px-12">
+      <div ref={ref} className="no-scrollbar flex gap-3 overflow-x-auto overflow-y-hidden px-6 md:px-12 py-6 scroll-px-12">
         {items.map((item) => (
           <PosterCard key={`${item.id}-${item.media_type || ""}`} item={item} wide={wide} />
         ))}
