@@ -8,6 +8,8 @@ body {
   background: #0b0b12;
   color: #fff;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Hide scrollbars on the horizontal rows but keep scrolling */

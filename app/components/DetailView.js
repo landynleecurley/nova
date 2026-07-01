@@ -24,7 +24,7 @@ export default function DetailView({ item, mediaType }) {
 
   return (
     <div className="pb-10">
-      <section className="relative h-[65vh] min-h-[420px]">
+      <section className="relative h-[65vh] min-h-[420px] max-w-full overflow-hidden">
         {bg ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={bg} alt={titleOf(item)} className="absolute inset-0 w-full h-full object-cover object-center" />
