@@ -34,8 +34,11 @@ export default function DetailView({ item, mediaType }) {
         <div className="absolute inset-0 hero-fade" />
 
         <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-12 pb-10 max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-black mb-4 drop-shadow-lg">{titleOf(item)}</h1>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80 mb-5">
+          <div className="flex items-center gap-4 md:gap-5 mb-4 flex-wrap">
+            <h1 className="text-4xl md:text-6xl font-black drop-shadow-lg">{titleOf(item)}</h1>
+            <DetailActions id={item.id} title={titleOf(item)} mediaType={mediaType} />
+          </div>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
             {yearOf(item) && <span>{yearOf(item)}</span>}
             {runtime && <span>{runtime}</span>}
             <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{mediaType}</span>
@@ -49,7 +52,6 @@ export default function DetailView({ item, mediaType }) {
             )}
             {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
           </div>
-          <DetailActions id={item.id} title={titleOf(item)} mediaType={mediaType} />
         </div>
       </section>
 

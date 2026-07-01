@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IconPlay } from "./icons";
+import { IconPlay, IconPlus, IconCheck } from "./icons";
 
 const KEY = "nova_my_stuff";
 
@@ -42,26 +42,30 @@ export default function DetailActions({ id, title, mediaType }) {
   }
 
   return (
-    <div className="relative flex flex-wrap items-center gap-3">
+    <div className="relative flex items-center gap-3">
       <Link
         href={`/watch/${mediaType}/${id}`}
-        className="nova-gradient hover:opacity-90 text-white font-bold px-8 py-3 rounded-full transition-opacity flex items-center gap-2"
+        aria-label={`Play ${title}`}
+        title="Play"
+        className="w-12 h-12 md:w-14 md:h-14 rounded-full nova-gradient hover:opacity-90 text-white grid place-items-center transition-opacity shadow-lg"
       >
-        <IconPlay className="w-5 h-5" /> Play
+        <IconPlay className="w-6 h-6 md:w-7 md:h-7" />
       </Link>
       <button
         onClick={toggle}
-        className={`font-bold px-6 py-3 rounded-full transition-colors ${
+        aria-label={saved ? "Remove from My Stuff" : "Add to My Stuff"}
+        title={saved ? "In My Stuff" : "Add to My Stuff"}
+        className={`w-12 h-12 md:w-14 md:h-14 rounded-full grid place-items-center transition-colors ${
           saved
-            ? "bg-nova-pink/20 text-nova-pink ring-1 ring-nova-pink"
+            ? "bg-nova-pink/20 text-nova-pink ring-2 ring-nova-pink"
             : "bg-white/15 hover:bg-white/25 backdrop-blur text-white"
         }`}
       >
-        {saved ? "✓ In My Stuff" : "+ My Stuff"}
+        {saved ? <IconCheck className="w-6 h-6" /> : <IconPlus className="w-6 h-6" />}
       </button>
 
       {toast && (
-        <span className="absolute left-0 -bottom-9 text-sm bg-nova-panel border border-white/15 rounded-full px-4 py-1.5 text-white/90 whitespace-nowrap">
+        <span className="absolute left-0 top-full mt-2 text-sm bg-nova-panel border border-white/15 rounded-full px-4 py-1.5 text-white/90 whitespace-nowrap z-10">
           {toast}
         </span>
       )}
