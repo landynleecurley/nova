@@ -49,7 +49,7 @@ export default function AccountProfiles() {
               >
                 {p.name}
               </span>
-              {p.owner && <span className="text-[10px] uppercase tracking-wide text-nova-pink">Head of Household</span>}
+              {p.owner && <span className="text-[10px] uppercase tracking-wide text-nova-pink">Main</span>}
             </button>
           );
         })}
@@ -69,7 +69,7 @@ export default function AccountProfiles() {
 
       {isOwner ? (
         <p className="text-sm text-nova-gray">
-          As the head of household you can add profiles here (up to 5). To remove a profile, switch to it and
+          As the main account you can add profiles here (up to 5). To remove a profile, switch to it and
           choose <span className="text-white font-medium">Remove user account</span>.
         </p>
       ) : (
@@ -77,7 +77,7 @@ export default function AccountProfiles() {
           <div>
             <p className="font-semibold">Remove this profile</p>
             <p className="text-sm text-nova-gray">
-              Permanently delete &ldquo;{active.name}&rdquo; and return to the head of household.
+              Permanently delete &ldquo;{active.name}&rdquo; and return to the main account.
             </p>
           </div>
           <button
