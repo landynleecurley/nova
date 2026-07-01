@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { DEFAULT_AVATAR } from "../../lib/avatars";
 
-const KEY = "nova_profiles_v1";
+const KEY = "nova_profiles_v2";
 export const MAX_PROFILES = 5;
 
 const DEFAULT_STATE = {
-  profiles: [{ id: "owner", name: "Landyn", avatar: DEFAULT_AVATAR, owner: true }],
+  profiles: [{ id: "owner", name: "Demo", avatar: DEFAULT_AVATAR, owner: true }],
   activeId: "owner",
 };
 

@@ -15,7 +15,7 @@ const LINKS = [
   { label: "News", href: "/browse?type=tv" },
 ];
 
-const USER_EMAIL = "landyn.curley@students.maestrocollege.edu";
+const USER_EMAIL = "demo@nova.tv";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
