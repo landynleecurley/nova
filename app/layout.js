@@ -2,8 +2,11 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 
 export const metadata = {
-  title: "Nova — Endless stories, one place",
-  description: "Stream thousands of movies and shows on Nova. Endless stories, one place.",
+  title: {
+    default: "Nova — Watch Anywhere, Anytime",
+    template: "%s — Nova",
+  },
+  description: "Watch Anywhere, Anytime. Stream thousands of movies and shows on Nova.",
 };
 
 export const viewport = {

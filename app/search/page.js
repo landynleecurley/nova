@@ -3,6 +3,11 @@ import { search } from "../../lib/tmdb";
 
 export const dynamic = "force-dynamic";
 
+export async function generateMetadata({ searchParams }) {
+  const q = searchParams?.q?.trim();
+  return { title: q ? `Search: ${q}` : "Search" };
+}
+
 export default async function SearchPage({ searchParams }) {
   const q = searchParams?.q || "";
   const results = await search(q);

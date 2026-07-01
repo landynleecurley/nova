@@ -3,6 +3,12 @@ import { getDetails, titleOf, IMG_ORIGINAL } from "../../../../lib/tmdb";
 
 export const revalidate = 3600;
 
+export async function generateMetadata({ params }) {
+  const type = params.type === "tv" ? "tv" : "movie";
+  const item = await getDetails(type, params.id);
+  return { title: item ? `Watching ${titleOf(item)}` : "Now Playing" };
+}
+
 export default async function WatchPage({ params }) {
   const type = params.type === "tv" ? "tv" : "movie";
   const item = await getDetails(type, params.id);

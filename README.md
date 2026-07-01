@@ -1,6 +1,6 @@
 # ✦ Nova
 
-**Endless stories, one place.**
+**Watch Anywhere, Anytime.**
 
 Nova is a full-featured streaming-service web app built with **Next.js 14 (App Router)**,
 **React**, and **Tailwind CSS** — featuring a signature pink→violet gradient identity,
