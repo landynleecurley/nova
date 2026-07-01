@@ -21,7 +21,7 @@ function gradientFor(id) {
   return `linear-gradient(145deg, ${a}, ${b})`;
 }
 
-export default function PosterCard({ item, wide = false }) {
+export default function PosterCard({ item, wide = false, original = false }) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
   const imgRef = useRef(null);
@@ -69,6 +69,15 @@ export default function PosterCard({ item, wide = false }) {
         <div className="w-full h-full flex flex-col justify-end p-3" style={{ background: gradientFor(item.id) }}>
           <span className="text-lg font-black leading-tight drop-shadow">{titleOf(item)}</span>
           <span className="text-xs text-white/80 mt-1 uppercase tracking-wide">{type}</span>
+        </div>
+      )}
+
+      {original && (
+        <div className="absolute top-1.5 left-2 z-20 flex items-center gap-1 pointer-events-none">
+          <span className="text-nova-pink text-lg leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">✦</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.18em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            Original
+          </span>
         </div>
       )}
 

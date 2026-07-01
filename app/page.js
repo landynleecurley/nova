@@ -20,7 +20,13 @@ export default async function HomePage() {
 
       <div className="-mt-4 md:-mt-6 relative z-10">
         {rows.map((row, i) => (
-          <Row key={row.key} title={row.title} items={row.items} wide={i === 0} />
+          <Row
+            key={row.key}
+            title={row.title}
+            items={row.items}
+            wide={i === 0}
+            original={row.key === "originals"}
+          />
         ))}
       </div>
     </div>

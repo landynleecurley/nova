@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import PosterCard from "./PosterCard";
 
-export default function Row({ title, items, wide = false }) {
+export default function Row({ title, items, wide = false, original = false }) {
   const ref = useRef(null);
 
   function scroll(dir) {
@@ -28,7 +28,7 @@ export default function Row({ title, items, wide = false }) {
 
       <div ref={ref} className="no-scrollbar flex gap-3 overflow-x-auto overflow-y-hidden px-6 md:px-12 py-6 scroll-px-12">
         {items.map((item) => (
-          <PosterCard key={`${item.id}-${item.media_type || ""}`} item={item} wide={wide} />
+          <PosterCard key={`${item.id}-${item.media_type || ""}`} item={item} wide={wide} original={original} />
         ))}
       </div>
 
