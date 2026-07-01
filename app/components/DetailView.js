@@ -40,9 +40,12 @@ export default function DetailView({ item, mediaType }) {
             {runtime && <span>{runtime}</span>}
             <span className="uppercase border border-white/40 px-1.5 rounded text-xs">{mediaType}</span>
             {genres[0] && (
-              <span className="uppercase border border-nova-pink/60 text-nova-pink px-1.5 rounded text-xs">
+              <Link
+                href={`/browse?genre=${genres[0].id}&type=${mediaType}&name=${encodeURIComponent(genres[0].name)}`}
+                className="uppercase border border-nova-pink/60 text-nova-pink px-1.5 rounded text-xs hover:bg-nova-pink hover:text-nova-dark transition-colors"
+              >
                 {genres[0].name}
-              </span>
+              </Link>
             )}
             {item.vote_average ? <span className="text-nova-pink">★ {item.vote_average.toFixed(1)}</span> : null}
           </div>

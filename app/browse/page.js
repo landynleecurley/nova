@@ -1,10 +1,33 @@
 import PosterCard from "../components/PosterCard";
-import { getRows } from "../../lib/tmdb";
+import { getRows, getByGenre } from "../../lib/tmdb";
 
 export const revalidate = 3600;
 
 export default async function BrowsePage({ searchParams }) {
   const type = searchParams?.type; // "movie" | "tv" | undefined
+  const genre = searchParams?.genre; // TMDB genre id
+  const genreName = searchParams?.name;
+
+  // Genre-filtered browse (from clicking a genre chip).
+  if (genre) {
+    const items = await getByGenre(type || "movie", genre);
+    const heading = genreName ? `${genreName} ${type === "tv" ? "Shows" : "Movies"}` : "Genre";
+    return (
+      <div className="pt-24 px-6 md:px-12 min-h-screen">
+        <h1 className="text-2xl font-bold mb-6">{heading}</h1>
+        {items.length === 0 ? (
+          <p className="text-nova-gray">No titles found in this genre.</p>
+        ) : (
+          <div className="flex flex-wrap gap-4">
+            {items.map((item) => (
+              <PosterCard key={`${item.id}-${item.media_type || ""}`} item={item} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   const rows = await getRows();
 
   // Flatten, de-dupe, and optionally filter by media type.
